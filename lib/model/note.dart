@@ -1,9 +1,4 @@
-final String dbNote = 'note.db';
-final String tableNote = 'tb_note';
-final String columnId = '_id';
-final String columnContent = 'content';
-final String columnCreateTime = 'create_time';
-final String columnUpdateTime = 'update_time';
+import 'package:flutter_note_demo/util/db_helper.dart';
 
 class Note {
   int id;

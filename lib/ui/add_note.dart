@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note_demo/db_helper.dart';
-import 'package:flutter_note_demo/note.dart';
+import 'package:flutter_note_demo/model/note.dart';
+import 'package:flutter_note_demo/util/db_helper.dart';
 
-class AddPage extends StatelessWidget {
-  String noteContent;
+class AddNotePage extends StatelessWidget {
+  String description;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class AddPage extends StatelessWidget {
           ),
           tooltip: 'Save',
           onPressed: () {
-            saveNote(context);
+            _saveNote(context);
           },
         ),
       ]),
@@ -28,14 +28,14 @@ class AddPage extends StatelessWidget {
           hintText: "Please input...",
         ),
         onChanged: (String content) {
-          noteContent = content;
+          description = content;
         },
       ),
     );
   }
 
-  saveNote(context) async {
-    if (noteContent == null || noteContent.isEmpty) {
+  void _saveNote(BuildContext context) async {
+    if (description == null || description.isEmpty) {
 //      Scaffold.of(context).showSnackBar(new SnackBar(
 //        content: new Text("Please input content."),
 //      ));
@@ -45,16 +45,13 @@ class AddPage extends StatelessWidget {
     NoteProvider noteProvider = NoteProvider();
     await noteProvider.open();
     Note note = new Note();
-    note.content = noteContent;
+    note.content = description;
     var date = new DateTime.now();
     note.createTime = date.millisecondsSinceEpoch;
     note.updateTime = date.millisecondsSinceEpoch;
     await noteProvider.insert(note);
-    await noteProvider.close();
-
-//    Scaffold.of(context).showSnackBar(new SnackBar(
-//      content: new Text("Save successfully."),
-//    ));
-    Navigator.pop(context);
+    await noteProvider.close().then((onValue) {
+      Navigator.pop(context, true);
+    });
   }
 }

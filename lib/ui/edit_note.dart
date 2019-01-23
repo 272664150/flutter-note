@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note_demo/db_helper.dart';
-import 'package:flutter_note_demo/note.dart';
+import 'package:flutter_note_demo/model/note.dart';
+import 'package:flutter_note_demo/util/db_helper.dart';
 
-class EditPage extends StatelessWidget {
+class EditNotePage extends StatelessWidget {
   Note note;
 
-  EditPage(this.note);
+  EditNotePage(this.note);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class EditPage extends StatelessWidget {
           ),
           tooltip: 'Update',
           onPressed: () {
-            updateData(context);
+            _updateNote(context);
           },
         ),
       ]),
@@ -46,8 +46,11 @@ class EditPage extends StatelessWidget {
     );
   }
 
-  updateData(context) async {
+  void _updateNote(BuildContext context) async {
     if (note.content == null || note.content.isEmpty) {
+//      Scaffold.of(context).showSnackBar(new SnackBar(
+//        content: new Text("Content cannot be empty."),
+//      ));
       return;
     }
 
@@ -55,8 +58,8 @@ class EditPage extends StatelessWidget {
     await noteProvider.open();
     note.updateTime = new DateTime.now().millisecondsSinceEpoch;
     await noteProvider.update(note);
-    await noteProvider.close();
-
-    Navigator.pop(context);
+    await noteProvider.close().then((onValue) {
+      Navigator.pop(context, true);
+    });
   }
 }
