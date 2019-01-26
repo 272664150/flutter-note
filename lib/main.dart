@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note_demo/ui/home_note.dart';
+import 'package:flutter_note/ui/home_note.dart';
 
 void main() => runApp(MainApp());
 

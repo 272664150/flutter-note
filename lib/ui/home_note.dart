@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note_demo/model/note.dart';
-import 'package:flutter_note_demo/ui/add_note.dart';
-import 'package:flutter_note_demo/ui/edit_note.dart';
-import 'package:flutter_note_demo/util/db_helper.dart';
+import 'package:flutter_note/model/note.dart';
+import 'package:flutter_note/ui/add_note.dart';
+import 'package:flutter_note/ui/edit_note.dart';
+import 'package:flutter_note/util/db_helper.dart';
 
 class NoteHomePage extends StatefulWidget {
   NoteHomePage({Key key}) : super(key: key);

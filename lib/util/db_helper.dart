@@ -1,4 +1,4 @@
-import 'package:flutter_note_demo/model/note.dart';
+import 'package:flutter_note/model/note.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

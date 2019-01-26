@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note_demo/model/note.dart';
-import 'package:flutter_note_demo/util/db_helper.dart';
+import 'package:flutter_note/model/note.dart';
+import 'package:flutter_note/util/db_helper.dart';
 
 class EditNotePage extends StatelessWidget {
   Note note;

@@ -1,4 +1,4 @@
-import 'package:flutter_note_demo/util/db_helper.dart';
+import 'package:flutter_note/util/db_helper.dart';
 
 class Note {
   int id;
